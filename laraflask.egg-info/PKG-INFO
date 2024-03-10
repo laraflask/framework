@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: laraflask
-Version: 0.21
+Version: 0.25
 Summary: A flask package for Laraflask
 Home-page: https://github.com/laraflask/laraflask
 Author: Teguh Rijanandi
@@ -14,5 +14,6 @@ Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: flask
 Requires-Dist: requests
+Requires-Dist: python-dotenv
 
 # Laraflask Framework

@@ -14,12 +14,12 @@ else:
 
 setup(
     name='laraflask',
-    version='0.21', # don't forget to change the version number
+    version='0.25', # don't forget to change the version number
     packages=find_packages(include=['laraflask', 'laraflask.*']),
     include_package_data=True,
     install_requires=[
         'flask',
-        'requests',
+        'requests'
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -52,6 +52,7 @@ setup(
 # $ pip install wheel twine build setuptools
 
 # Build the Distribution Package:
+# $ python setup.py sdist
 # $ python setup.py sdist bdist_wheel
 # $ python -m build
 
@@ -59,7 +60,7 @@ setup(
 # $ twine upload dist/*
 
 # Install the Distribution Package Locally:
-# $ pip install dist/laraflask-0.1.tar.gz
+# $ pip install dist/laraflask-0.21.tar.gz
 
 # Uninstall the Distribution Package:
 # $ pip uninstall laraflask
