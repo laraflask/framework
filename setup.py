@@ -13,6 +13,11 @@ setup(
     license='MIT',
     keywords='laraflask flask package',
     url='https://github.com/laraflask/laraflask',
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Operating System :: OS Independent',
+    ],
 )
 
 # Build the Distribution Package:

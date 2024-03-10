@@ -1,3 +1,4 @@
+LICENSE
 setup.py
 laraflask.egg-info/PKG-INFO
 laraflask.egg-info/SOURCES.txt

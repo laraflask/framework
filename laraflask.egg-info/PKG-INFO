@@ -1,9 +1,13 @@
 Metadata-Version: 2.1
 Name: laraflask
 Version: 0.1
-Summary: A simple flask package for Laraflask
+Summary: A flask package for Laraflask
 Home-page: https://github.com/laraflask/laraflask
 Author: Teguh Rijanandi
 Author-email: teguhrijanandi02@gmail.com
 License: MIT
 Keywords: laraflask flask package
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
