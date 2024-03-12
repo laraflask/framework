@@ -19,7 +19,8 @@ setup(
     include_package_data=True,
     install_requires=[
         'flask',
-        'requests'
+        'requests',
+        'flask-wtf'
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
