@@ -48,7 +48,7 @@ class AssetsRoute:
 
         # Check if the file exists
         if not os.path.isfile(requested_file_path):
-            return 'The file does not exist'
+            return 'The file '+ requested_file_path +' does not exist'
 
         # Get the requested file
         requested_file = open(requested_file_path, 'rb')
