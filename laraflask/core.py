@@ -33,6 +33,12 @@ class Core:
         # Set the app secret key
         self.app.secret_key = AppConfiguration().secret_key
 
+        # Set the app debug mode
+        self.app.debug = AppConfiguration().app_debug
+
+        # Set the app base url
+        self.app.config['BASE_URL'] = AppConfiguration().app_host + ':' + str(AppConfiguration().app_port)
+
         # Create a CSRF protection
         self.csrf = CSRFProtect()
 

@@ -2,6 +2,7 @@
 
 import os
 from setuptools import setup, find_packages
+from laraflask import __version__
 
 # Get the path to the README file relative to the setup.py script
 readme_path = os.path.join(os.path.dirname(__file__), 'Readme.md')
@@ -14,7 +15,7 @@ else:
 
 setup(
     name='laraflask',
-    version='0.25', # don't forget to change the version number
+    version=__version__,
     packages=find_packages(include=['laraflask', 'laraflask.*']),
     include_package_data=True,
     install_requires=[
