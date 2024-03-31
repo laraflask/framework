@@ -21,7 +21,8 @@ setup(
     install_requires=[
         'flask',
         'requests',
-        'flask-wtf'
+        'flask-wtf',
+        'click'
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',

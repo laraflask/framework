@@ -1,6 +1,4 @@
-
-# Import app configuration class
-from config.app import AppConfiguration
+import laraflask
 
 # Import app.py bootstrap file
 from bootstrap.app import AppBootstrap
@@ -16,6 +14,7 @@ from flask import Flask
 
 # Install necessary packages
 from flask_wtf.csrf import CSRFProtect
+from laraflask.Helpers.config import Config
 from flask import request
 
 # Create a Core class
@@ -31,16 +30,19 @@ class Core:
                     )
         
         # Set the app secret key
-        self.app.secret_key = AppConfiguration().secret_key
+        self.app.secret_key = self.get_config('app.secret_key')
 
         # Set the app debug mode
-        self.app.debug = AppConfiguration().app_debug
+        self.app.debug = self.get_config('app.app_debug')
 
         # Set the app base url
-        self.app.config['BASE_URL'] = AppConfiguration().app_host + ':' + str(AppConfiguration().app_port)
+        self.app.config['BASE_URL'] = self.get_config('app.app_host') + ':' + str(self.get_config('app.app_port'))
 
         # Create a CSRF protection
         self.csrf = CSRFProtect()
+
+        # Set the app version
+        self.version = laraflask.__version__
 
     # Run the Flask app
     def run(self):
@@ -67,9 +69,9 @@ class Core:
 
         # Run the Flask app
         return self.app.run(
-            host=AppConfiguration().app_host,
-            port=AppConfiguration().app_port,
-            debug=AppConfiguration().app_debug
+            host=self.get_config('app.app_host'),
+            port=self.get_config('app.app_port'),
+            debug=self.app.debug
         )
 
     # Register routes
@@ -79,6 +81,10 @@ class Core:
     # Register CSRF protection
     def register_csrf(self):
         return self.csrf.init_app(self.app)
+    
+    # Get the app configuration
+    def get_config(self, key):
+        return Config().get(key)
 
     # Call the Flask app
     def __call__(self):
