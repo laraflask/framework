@@ -3,36 +3,38 @@ import click
 # Import driver
 from laraflask.Drivers.Cli.Driver import Driver
 from laraflask.Drivers.Cli.Check import Check as CheckDriver
+from laraflask.Drivers.Cli.Database import Database as DatabaseDriver
 
 class LaraflaskCli:
 
     def __init__(self, app):
         self.driver = Driver(app, click)
+
         self.check_driver = CheckDriver(app, click)
+        self.database_driver = DatabaseDriver(app, click)
         return
     
     # Register the CLI commands
     def register(self):
-        self.check_version()
-        return
-        
-    # Check the something inside the app
-    def check_version(self):
-        self.driver.command_can_run_in(['development', 'local'])
+        @click.group()
+        def cli():
+            """ 
+            Laraflask Framework Application
+            """            
+            pass
 
-        @click.command()
-        @click.option(
-            '--check', 
-            help='Check the something inside the app', 
-            type=click.Choice([
-                    'version', 
-                    'environment', 
-                    'base_url', 
-                    'base_path', 
-                    'filesystem'
-                ]
-            ))
+        # 1. Check the something inside the app
+        @cli.command()
+        @click.argument('check', type=click.Choice([
+                'version', 
+                'environment', 
+                'base_url', 
+                'base_path', 
+                'filesystem'
+            ]))
         def check(check):
+            # Protect the command from running in the wrong environment
+            self.driver.command_can_run_in(['development', 'local'])
 
             # Check the version of the app  
             if check == 'version':
@@ -53,9 +55,21 @@ class LaraflaskCli:
             # Check the app filesystem configuration
             elif check == 'filesystem':
                 self.check_driver.check_laraflask_filesystem()
+        
+        # 2. Manage the database
+        @cli.command()
+        @click.argument('command', type=click.Choice([
+                'new_sqlite_database'
+            ]))
+        
+        def manage_database(command):
+            # Protect the command from running in the wrong environment
+            self.driver.command_can_run_in(['development', 'local'])
 
-            return 
+            # Create a something inside the app
+            if command == 'new_sqlite_database':
+                self.database_driver.new_sqlite_database()
 
-        return check()
+        return cli()
 
 # EOF
